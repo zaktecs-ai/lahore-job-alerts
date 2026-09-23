@@ -12,7 +12,7 @@ The whole project lives in a **single top-level folder**: `~/lahore-job-alerts/`
 ├── src/            (Python code)
 ├── scripts/        (registry-build helpers)
 ├── tests/          (unit tests)
-├── data/           (companies.json + seen_jobs.json + sources/ + archive/)
+├── data/           (companies.json + seen_jobs.json + sources/)
 ├── logs/           (cron.log)
 ├── run_alerts.sh   (cron wrapper — lives INSIDE the project)
 ├── config.yaml  requirements.txt  .env  .env.example
@@ -140,8 +140,6 @@ Live-check + cap (dead links hata deta hai, purani file backup rehti hai):
 | File | Kya hai |
 |---|---|
 | `data/companies.json` | active registry (app + cron isi ko parhta hai) |
-| `data/archive/companies_before_finalize.json` | finalize se pehle ka backup |
-| `data/archive/raw_registry_pre_finalize.json` | seed ke baad ka raw registry snapshot |
 | `data/sources/pool_resolved.tsv` | resolver se nikle naye career URLs (merge input) |
 | `data/sources/*.tsv,*.txt` | registry build inputs (websites, domains lists) |
 

@@ -18,3 +18,7 @@ logs/*
 *.swp
 .DS_Store
 Thumbs.db
+
+# Deliverables (task outputs — not source code)
+cleaned_project.zip
+Summary Report.txt

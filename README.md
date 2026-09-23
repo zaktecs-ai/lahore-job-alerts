@@ -72,8 +72,7 @@ lahore-job-alerts/
 ├── data/
 │   ├── companies.json       # ✅ ACTIVE registry (app + cron)
 │   ├── seen_jobs.json       # already-notified jobs (dedupe)
-│   ├── sources/             # registry build inputs (TSV/TXT)
-│   └── archive/             # purane registry snapshots
+│   └── sources/             # registry build inputs (TSV/TXT)
 │
 ├── tests/                   # pytest (parser + matcher)
 └── logs/                    # cron.log (gitignored)
