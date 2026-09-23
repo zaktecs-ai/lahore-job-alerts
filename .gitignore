@@ -1,0 +1,20 @@
+# Secrets & environment
+.env
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Runtime output (cron logs) — logs folder repo mein rehti hai, content nahi
+logs/*
+!logs/.gitkeep
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

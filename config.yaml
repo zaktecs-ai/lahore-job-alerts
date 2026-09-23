@@ -1,0 +1,120 @@
+# ======================================================================
+#  LAHORE ENTRY-LEVEL JOB ALERT SYSTEM
+#  MAIN CONFIGURATION FILE
+#
+#  Is file ko edit kar ke system ka behaviour change kiya ja sakta hai.
+#  Har section ke upar Roman Urdu mein explanation diya gaya hai.
+#  Secrets (passwords) is file mein NAHI rakhain — wo .env file mein hain.
+# ======================================================================
+
+# ---------------------------------------------------------------
+# SCRAPING SETTINGS
+# ---------------------------------------------------------------
+batch_size: 40                 # Ek saath kitni companies scrape karni hain
+max_companies: 500             # Ek run mein at most kitni companies (max 500)
+request_timeout: 20            # Har page ka timeout (seconds)
+request_delay: 0.3             # Har request ke beech pause (seconds) — polite rahain
+max_retries: 2                 # Fail hone par kitni baar dobara try karna hai
+max_page_bytes: 8000000        # Page size limit (8 MB) — bari listing pages ke liye
+
+# ---------------------------------------------------------------
+# JOB MATCHING SETTINGS
+# ---------------------------------------------------------------
+# Entry-level experience ceiling (years) — sirf itne ya kam experience wali
+# jobs match hoti hain (0-2 = fresher / entry-level).
+max_experience_years: 2
+
+# Listing snippet mein experience na mile to job ka detail page kholo aur
+# wahan dobara verify karo. Isi se Arpatech "Experience: 4-6" (bina "years")
+# wala false positive pakra gaya.
+verify_detail_experience: true
+
+# Agar job mein experience bilkul mention nahi hai:
+#   a) title junior lage (e.g. "Junior Data Analyst")  -> include
+#   b) role TITLE mein clear ho (e.g. "Web Scraper") aur blocked
+#      keyword na ho                                       -> include
+include_unstated_experience_if_junior_title: true
+include_unstated_experience: true
+
+# --- TARGET ROLES ---
+# Hum in data-related roles ki talash karte hain.
+# NAYI role / keyword ADD karni ho to bas yahan list mein likh dain.
+target_roles:
+  - data scraper
+  - web scraper
+  - scraping
+  - data engineer
+  - etl developer
+  - junior etl
+  - data automation
+  - browser automation
+  - data analyst
+  - data science
+  - junior data
+  - data associate
+  - data entry
+  - data operations
+  - data quality
+  - sql developer
+  - rpa developer
+  - data intern
+  - data trainee
+  - data pipeline
+
+# --- BLOCKED KEYWORDS ---
+# Agar title/description mein yeh zikar ho to job REJECT — senior roles
+# entry-level nahi hain.
+blocked_keywords:
+  - senior
+  - principle
+  - principal
+  - lead
+  - manager
+  - head of
+  - director
+  - architect
+  - "5+ years"
+  - "5+ yrs"
+  - "6+ years"
+  - "8+ years"
+  - "10+ years"
+  - expert level
+  - staff engineer
+
+# --- JUNIOR HINTS ---
+# Yeh words entry-level hone ka strong proof dete hain (kabhi kabhi
+# experience written nahi hota).
+junior_hints:
+  - junior
+  - entry level
+  - entry-level
+  - fresher
+  - fresh graduate
+  - internship
+  - intern
+  - trainee
+  - "0-2"
+  - "0-1"
+  - "1-2"
+  - "0 - 2"
+  - "up to 2"
+  - "less than 2"
+  - "under 2"
+  - "max 2"
+
+# ---------------------------------------------------------------
+# EMAIL SETTINGS
+# ---------------------------------------------------------------
+email:
+  enabled: true                       # false karne par koi email nahi jayegi
+  subject: "Job Alert: {n} Entry-Level Data Role(s) Found — Lahore"
+  # Email body mein portfolio link bhi jata hai taake recruiter aap ko
+  # asani se check kar sake.
+  portfolio_url: "https://zaktecs.dev"
+
+# ---------------------------------------------------------------
+# FILES & PATHS (zayada tar change nahi karne)
+# ---------------------------------------------------------------
+files:
+  companies_file: "data/companies.json"    # Lahore companies ki registry
+  seen_jobs_file: "data/seen_jobs.json"    # Already-notified jobs (dedupe)
